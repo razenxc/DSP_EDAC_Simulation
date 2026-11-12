@@ -1,0 +1,12 @@
+#pragma once
+
+enum Methods
+{
+	EVEN_PARITY,
+	ODD_PARITY,
+	REPETITION,
+	INVERSE,
+	BERGER,
+	DIVISIBLE_BY_3,
+	CORRELATION
+};

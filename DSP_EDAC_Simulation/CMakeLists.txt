@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_executable (DSP_EDAC_Simulation "DSP_EDAC_Simulation.cpp" "DSP_EDAC_Simulation.h")
+add_executable (DSP_EDAC_Simulation "main.cxx")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET DSP_EDAC_Simulation PROPERTY CXX_STANDARD 20)
