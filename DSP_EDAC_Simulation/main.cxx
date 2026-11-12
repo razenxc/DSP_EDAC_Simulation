@@ -9,6 +9,9 @@ int main()
 	// Even parity simulation inline
 
 	std::cout << "=== Even parity simulation ===" << std::endl;
+
+	// =============
+	// TRANSMITTER
 	std::vector<uint16_t> input_data;
 
 	// well I could use boolean instead of uint16 but I realized it only after implementation of the code below
@@ -92,11 +95,52 @@ int main()
 
 	std::cout << std::endl;
 
+	// composing of data that will be transmitted
+	std::vector<uint16_t> request;
+
+	// error simulation (input_data XOR e_vec)
 	std::cout << "[+] Error vec:";
 	for (const uint16_t var : e_vec)
 	{
 		std::cout << var;
 	}
+	std::cout << std::endl;
 
-	// To-Do: implement transmission, receiving, checking
+	for (size_t i = 0; i < input_data.size(); i++)
+	{
+		request.push_back(input_data[i] ^ e_vec[i]); // remove "^ e_vec[i]" to simulate successful transmission
+	}
+
+	// output of the data that will be transmitted
+	std::cout << "[+] Request: ";
+	for (const uint16_t var : request)
+	{
+		std::cout << var;
+	}
+	std::cout << std::endl;
+
+	// =========
+	// RECEIVER
+	uint32_t ones_count = 0;
+
+	for (const uint16_t var : request)
+	{
+		if (var == 1) ones_count++;
+	}
+
+	// verification using the method
+	if (ones_count % 2 != 0)
+	{
+		std::cout << "=== The transmission was corrupted. An odd number of 1s was detected in the bit string. ===" << std::endl;
+	}
+	else
+	{
+		std::cout << "=== The transmission was successful. The number of 1s in the received string is divisible by 2. ===" << std::endl;
+	}
+
+	std::cout << "=== Transmitted: ";
+	for (const uint16_t var : input_data) { std::cout << var; }
+	std::cout << " >>> Received: ";
+	for (const uint16_t var : request) { std::cout << var; }
+	std::cout << " ===" << std::endl;
 }
