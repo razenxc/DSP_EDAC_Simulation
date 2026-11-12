@@ -1,6 +1,6 @@
 #pragma once
 
-enum Methods
+enum Method
 {
 	EVEN_PARITY,
 	ODD_PARITY,
@@ -10,3 +10,5 @@ enum Methods
 	DIVISIBLE_BY_3,
 	CORRELATION
 };
+
+void even_parity();
