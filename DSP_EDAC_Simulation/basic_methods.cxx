@@ -1,4 +1,5 @@
 #include "basic_methods.hxx"
+#include "utils.hxx"
 
 #include <iostream>
 #include <vector>
@@ -96,8 +97,7 @@ void even_parity()
 
 	std::cout << std::endl;
 
-	// composing of data that will be transmitted
-	std::vector<uint16_t> request;
+	
 
 	// error simulation (input_data XOR e_vec)
 	std::cout << "[+] Error vec:";
@@ -107,9 +107,11 @@ void even_parity()
 	}
 	std::cout << std::endl;
 
-	for (size_t i = 0; i < input_data.size(); i++)
+	// composing of data that will be transmitted
+	std::vector<uint16_t> request = Utils::XOR_uint16t_vectors(input_data, e_vec);
+	if (request.empty())
 	{
-		request.push_back(input_data[i] ^ e_vec[i]); // remove "^ e_vec[i]" to simulate successful transmission
+		throw std::exception("[!] Execution failed as vectors was different sizes");
 	}
 
 	// output of the data that will be transmitted
